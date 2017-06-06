@@ -30,10 +30,17 @@ public class CacheDataServiceTest {
 		Assert.assertEquals(cache1, cache2);
 	}
 	
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void whenGetCacheWithNullTwiceThenNull() {
-		cacheDataService.getCacheTestWithNull(123L);
-		cacheDataService.getCacheTestWithNull(123L);		
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		cacheDataService.putCacheTest(123L);
+		Cache cache1 = cacheDataService.getCacheTestWithNull(123L);
+		Cache cache2 = cacheDataService.getCacheTestWithNull(123L);		
+		stopWatch.stop();
+		System.out.println(stopWatch.getTotalTimeSeconds());
+		Assert.assertTrue(stopWatch.getTotalTimeSeconds() < 4);  //Each call to getCacheTest includes a 3 second timeout
+		Assert.assertEquals(cache1, cache2);	
 	}
 
 }

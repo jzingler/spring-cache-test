@@ -29,4 +29,9 @@ public class CacheDataServiceImpl implements ICacheDataService {
 		return null;
 	}
 
+	@Override
+	public Cache putCacheTest(long id) {
+		return new Cache(id);
+	}
+
 }
