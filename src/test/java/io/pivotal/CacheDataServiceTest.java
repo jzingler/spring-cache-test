@@ -17,7 +17,8 @@ public class CacheDataServiceTest {
 	
 	@Autowired
 	ICacheDataService cacheDataService;
-
+	
+	
 	@Test
 	public void whenGetCacheTwiceThenTotalTimeLessThanFourSecs() {
 		StopWatch stopWatch = new StopWatch();
@@ -25,7 +26,7 @@ public class CacheDataServiceTest {
 		Cache cache1 = cacheDataService.getCacheTest(123L);
 		Cache cache2 = cacheDataService.getCacheTest(123L);		
 		stopWatch.stop();
-		Assert.assertTrue(stopWatch.getTotalTimeSeconds() < 4);
+		Assert.assertTrue(stopWatch.getTotalTimeSeconds() < 4);  //Each call to getCacheTest includes a 3 second timeout
 		Assert.assertEquals(cache1, cache2);
 	}
 	
