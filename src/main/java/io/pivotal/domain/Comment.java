@@ -1,10 +1,10 @@
 package io.pivotal.domain;
 
-public class Cache {
+public class Comment {
 	private long id;
 	private String testComment;
 	
-	public Cache(long id2) {
+	public Comment(long id2) {
 		this.id = id2;
 	}
 	public long getId() {

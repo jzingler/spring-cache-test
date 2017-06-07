@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StopWatch;
 
-import io.pivotal.domain.Cache;
+import io.pivotal.domain.Comment;
 import io.pivotal.service.ICacheDataService;
 
 @RunWith(SpringRunner.class)
@@ -23,8 +23,8 @@ public class CacheDataServiceTest {
 	public void whenGetCacheTwiceThenTotalTimeLessThanFourSecs() {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
-		Cache cache1 = cacheDataService.getCacheTest(123L);
-		Cache cache2 = cacheDataService.getCacheTest(123L);		
+		Comment cache1 = cacheDataService.getCacheTest(123L);
+		Comment cache2 = cacheDataService.getCacheTest(123L);		
 		stopWatch.stop();
 		Assert.assertTrue(stopWatch.getTotalTimeSeconds() < 4);  //Each call to getCacheTest includes a 3 second timeout
 		Assert.assertEquals(cache1, cache2);
@@ -34,9 +34,9 @@ public class CacheDataServiceTest {
 	public void whenGetCacheWithNullTwiceThenNull() {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
-		Cache initialCache = new Cache(123L);
+		Comment initialCache = new Comment(123L);
 		cacheDataService.putCacheTest(initialCache.getId());
-		Cache cache1 = cacheDataService.getCacheTestWithNull(123L);
+		Comment cache1 = cacheDataService.getCacheTestWithNull(123L);
 		stopWatch.stop();
 		System.out.println(stopWatch.getTotalTimeSeconds());
 		Assert.assertTrue(stopWatch.getTotalTimeSeconds() < 4);  //Each call to getCacheTest includes a 3 second timeout

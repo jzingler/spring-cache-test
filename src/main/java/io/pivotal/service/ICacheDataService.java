@@ -3,18 +3,18 @@ package io.pivotal.service;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
-import io.pivotal.domain.Cache;
+import io.pivotal.domain.Comment;
 
 public interface ICacheDataService {
 	
 	@Cacheable(cacheNames="testCache" )
-	Cache getCacheTest(long id);
+	Comment getCacheTest(long id);
 	
 	@Cacheable(cacheNames="testCacheUnlessEqNull", unless="#result==null")
-	Cache getCacheTestWithNull(long id);
+	Comment getCacheTestWithNull(long id);
 	
-	@CachePut(cacheNames="testCacheUnlessEqNull", key="#id")
-	Cache putCacheTest(long id);
+	@CachePut(cacheNames="testCacheUnlessEqNull")
+	Comment putCacheTest(long id);
 	
 	void simulateSlowService();
 
